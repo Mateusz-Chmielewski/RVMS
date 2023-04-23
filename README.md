@@ -12,12 +12,16 @@
 - Led diods WS2812B
 
 # Application
-## REST API
+## Backend
+Spring Boot application resposible for collecting data from sensors, processing and storaging in database. Apps can communicate with it using REST API interface.
+![Diagram](./docs/diagram.drawio)
 
 ## Web Application
+React application that allows user viewing of collected data. The data is presented in the form of clear graphs. After logging in as an administrator, the user can manage sensors.
 ### Results Preview
 ![Results Preview](./docs/images/results_preview.png)
 ### Admin Panel
+
 
 ## Used Technologies
 - Java 17
