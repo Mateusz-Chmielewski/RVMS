@@ -1,0 +1,35 @@
+version: "3.8"
+services: 
+  db: 
+    image: mysql
+    restart: always
+    # ports: 3306:3306   
+    networks:
+      - backend
+    environment:
+      MYSQL_DATABASE: sensors
+      MYSQL_ROOT_PASSWORD: contest1
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=contest1 --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 15
+
+  restapi:
+    build: backend
+    restart: always
+    depends_on: 
+      db:
+        condition: service_healthy
+    # ports: 8000:8080 
+    networks:
+      - backend
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: contest1
+      MYSQL_DATABASE: sensors
+      MYSQL_PORT: 3306
+
+networks:
+  backend:
