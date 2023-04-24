@@ -1,4 +1,7 @@
-export const apiUrl = "http://192.168.1.101:8080/api/v1"; // "http://192.168.0.10:8080/api/v1";
+
+const host = process.env.API_HOST ? process.env.API_HOST : "localhost";
+const port = process.env.API_PORT ? process.env.API_PORT : "8080";
+export const apiUrl = `http://${host}:${port}/api/v1`; // "http://192.168.0.10:8080/api/v1";
 export const apiHeader = {
   Accept: "application/json",
   "Content-Type": "application/json",
